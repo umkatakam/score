@@ -1,0 +1,72 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>{{scoreboard.matchinfo.teams}}</strong>
+        <br/>
+        <small>Played at {{scoreboard.matchinfo.venue}}</small>
+        <p><strong>Man of the match:</strong> {{scoreboard.matchinfo.mom}}</p>
+    </div>
+    <div class="panel-body" ng-repeat="inning in scoreboard.innings">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Batsman</th>
+                    <th>How Out</th>
+                    <th>R</th>
+                    <th>B</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                    <th>SR</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="bat in inning.batting">
+                    <td><small>{{bat.batsman}}</small></td>
+                    <td><small>{{bat.howout}}</small></td>
+                    <td><small>{{bat.runs}}</small></td>
+                    <td><small>{{bat.balls}}</small></td>
+                    <td><small>{{bat.fours}}</small></td>
+                    <td><small>{{bat.sixes}}</small></td>
+                    <td><small>{{(bat.runs/bat.balls)*100 | number:2}}</small></td>
+               </tr> 
+               <tr>
+                    <td><small>Extras</small></td>
+                    <td><small>(b {{inning.byes}}, lb {{inning.legbyes}}, nb {{inning.noballs}}, w {{inning.wides}})</small></td>
+                    <td><small>{{inning.byes + inning.legbyes + inning.noballs + inning.wides}}</small></td>
+                    <td/>
+                    <td/>
+                    <td/>
+                    <td/>
+               </tr>
+               <tr>
+                <td><small>Total</small></td>
+                <td><small>({{inning.wickets}} wickets, in {{inning.overs}} overs)</small></td>
+                <td><small>{{inning.score}}</small></td>
+                <td colspan="4"><small>({{inning.score/inning.overs | number:2}} per over)</small></td>
+               </tr>
+            </tbody>
+        </table>
+        
+        <table class="table table-striped table-condensed">
+           <thead>
+                <tr>
+                    <th>Bowler</th>
+                    <th>Overs</th>
+                    <th>M</th>
+                    <th>R</th>
+                    <th>W</th>
+                    <th>RR</th>
+                </tr>
+            </thead> 
+            <tbody>
+                <tr ng-repeat="bowl in inning.bowling">
+                    <td><small>{{bowl.bowler}}</small></td>
+                    <td><small>{{bowl.overs}}</small></td>
+                    <td><small>{{bowl.madiens}}</small></td>
+                    <td><small>{{bowl.runs}}</small></td>
+                    <td><small>{{bowl.wickets}}</small></td>
+                    <td><small>{{bowl.runs/bowl.overs | number:2}}</small></td>
+               </tr>  
+            </tbody>
+        </table>
+    </div>
+<div>

@@ -1,0 +1,23 @@
+<div class="panel panel-default" ng-repeat="match in matches">
+    <div class="panel-heading">
+        <h5>{{match.team1}} Vs {{match.team2}}</h5>
+        <small class="text-muted">{{match.venue}}</small>
+    </div>
+<div>
+
+<div class="panel-body">
+    <a href="#/matches/{{match.id}}">
+        <span style="width:50%; float:left" >
+            <h6 class="list-group-item-heading">
+                {{match.team1}}                
+            </h6>
+            <p class="list-group-item-heading">{{match.score1.runs}}/{{match.score1.wickets}} in {{match.score1.overs}} overs</p>
+        </span>
+                <span style="width:50%">
+            <h6 class="list-group-item-heading">
+                {{match.team2}}
+            </h6>
+            <p class="list-group-item-heading">{{match.score2.runs}}/{{match.score2.wickets}} in {{match.score2.overs}} overs</p>
+        </span>    
+    </a>
+</div>
