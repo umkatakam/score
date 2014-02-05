@@ -17,6 +17,9 @@ angular.module('scorerApp', [
       }).when('/scorecard/matchinfo',{
         templateUrl: 'views/matchinfo.html',
         controller: 'MatchInfoCtrl'
+      }).when('/score/match/:id',{
+        templateUrl: 'views/miniscorecard.html',
+        controller: 'ScoringCtrl'
       })
       .otherwise({
         redirectTo: '/matches'
