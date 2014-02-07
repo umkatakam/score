@@ -1,8 +1,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h5>{{matchinfo.hometeam}} Vs {{matchinfo.awayteam}}</h5>
-        <small>Played at {{matchinfo.venue}}</small>
-        <h3>0/0</h3>
+        <h6>{{matchinfo.hometeam}} Vs {{matchinfo.awayteam}}</h6>
+        <h6><small>Played at {{matchinfo.venue}}</small></h6>
+        <h5>0/0</h5>
     </div>
     
     <div class="panel-body">
@@ -17,7 +17,71 @@
                     <th>SR</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr ng-show="!isStrikerAdded">
+                    <td colspan="6" >
+                        <a href="" ng-click="toggleStrikerLink()">Click to add batsman</a>
+                    </td>
+                </tr>
+                <tr ng-show="isStrikerAdded && !showStriker">
+                    <td colspan="4">
+                        <input type="text" ng-model="strikerName" class="form-control" placeholder="Enter batsman name"/>
+                    </td>
+                    <td colspan="2">
+                        <button type="button" ng-click="addStriker()" class="btn btn-primary">Add</button>
+                    </td>
+                </tr>
+                <tr ng-show="isStrikerAdded && showStriker">
+                    <td><small>{{striker.batsman}}</small></td>
+                    <td><small>{{striker.runs}}</small></td>
+                    <td><small>{{striker.balls}}</small></td>
+                    <td><small>{{striker.fours}}</small></td>
+                    <td><small>{{striker.sixes}}</small></td>
+                    <td><small>{{(striker.runs/striker.balls)*100 | number:2}}</small></td>
+                </tr>
+                
+                <tr ng-show="!isNonStrikerAdded">
+                    <td colspan="6" >
+                        <a href="" ng-click="toggleNonStrikerLink()">Click to add batsman</a>
+                    </td>
+                </tr>
+                <tr ng-show="isNonStrikerAdded && !showNonStriker">
+                    <td colspan="4">
+                        <input type="text" ng-model="nonStrikerName" class="form-control" placeholder="Enter batsman name"/>
+                    </td>
+                    <td colspan="2">
+                        <button type="button" ng-click="addNonStriker()" class="btn btn-primary">Add</button>
+                    </td>
+                </tr>
+                <tr ng-show="isNonStrikerAdded && showNonStriker">
+                    <td><small>{{nonStriker.batsman}}</small></td>
+                    <td><small>{{nonStriker.runs}}</small></td>
+                    <td><small>{{nonStriker.balls}}</small></td>
+                    <td><small>{{nonStriker.fours}}</small></td>
+                    <td><small>{{nonStriker.sixes}}</small></td>
+                    <td><small>{{(nonStriker.runs/nonStriker.balls)*100 | number:2}}</small></td>
+                </tr>
+            </tbody>
         </table>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Runs</label>
+                <div class="col-sm-6">
+                    <select class="form-control" ng-model="runsOfTheBall">
+                        <option ng-repeat="run in possibleRuns">{{run}}</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label">How Scored</label>
+                <div class="col-sm-6">
+                    <select class="form-control" ng-model="howScored">
+                        <option ng-repeat="wayToScore in possibleWaysToScore">{{wayToScore}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
     </div>
 
 </div>

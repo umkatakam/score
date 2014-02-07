@@ -1,4 +1,17 @@
-<div class="panel panel-default" ng-repeat="match in matches">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+            </div>
+        </form>
+        <a href="#/scorecard/matchinfo" class="btn btn-default btn-sm navbar-btn">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="panel panel-default" ng-repeat="match in matches | filter:searchText" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
     <div class="panel-heading">
         <h5>{{match.team1}} Vs {{match.team2}}</h5>
         <small class="text-muted">{{match.venue}}</small>
